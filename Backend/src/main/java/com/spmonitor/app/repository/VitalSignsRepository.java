@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface VitalSignsRepository extends JpaRepository<VitalSigns, Long> {
     List<VitalSigns> findByPatient_PatientIdOrderByRecordedAtDesc(Long patientId);
+
+    Optional<VitalSigns> findTopByPatient_PatientIdOrderByRecordedAtDesc(Long patientId);
     
     @Query("SELECT v FROM VitalSigns v WHERE v.patient.patientId = :patientId ORDER BY v.recordedAt DESC")
     List<VitalSigns> findAllByPatientIdOrderByRecordedAtDesc(@Param("patientId") Long patientId);

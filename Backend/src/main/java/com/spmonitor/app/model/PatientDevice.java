@@ -18,6 +18,10 @@ public class PatientDevice {
     @Size(max = 100)
     @Column(name = "device_name", nullable = false)
     private String deviceName;
+
+    @Size(max = 100)
+    @Column(name = "external_id")
+    private String externalId;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", nullable = false)
@@ -46,6 +50,14 @@ public class PatientDevice {
     
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
+    }
+
+    public String getExternalId() {
+        return externalId;
+    }
+
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
     
     public Patient getPatient() {
